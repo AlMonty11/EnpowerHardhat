@@ -1,0 +1,12 @@
+<p class="text-2xl font-bold text-center text-blue-600 my-4">Home works!</p>
+
+<div *ngIf="!userLoguedIn" class="no-user text-center mt-6">
+    <button (click)="redirectToRegister()" class="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Register</button>
+    <button (click)="login()" class="m-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Login</button>
+</div>
+
+<div *ngIf="userLoguedIn" class="user-in text-center mt-6">
+    <button routerLink="/wallet" class="m-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Wallet</button>
+    <button routerLink="/contract-interact" class="m-2 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">Interact with Contract</button>
+    <button (click)="logout()" class="m-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
+</div>

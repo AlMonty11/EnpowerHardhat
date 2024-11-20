@@ -1,0 +1,18 @@
+<div class="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Wallet Address</h2>
+  <p class="text-lg text-gray-700 mb-6">{{ walletAddress }}</p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mb-4">Interact with Contract</h2>
+  <input [(ngModel)]="contractAddress" placeholder="Enter contract address" class="w-full p-2 mb-4 border border-gray-300 rounded" />
+  <button (click)="fetchMethods()" class="w-full py-2 mb-6 bg-blue-500 text-white font-bold rounded hover:bg-blue-600">Obtain Methods</button>
+
+  <div *ngIf="methods.length > 0">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Select Method</h3>
+    <select [(ngModel)]="selectedMethod" class="w-full p-2 mb-4 border border-gray-300 rounded">
+      <option *ngFor="let method of methods" [value]="method">{{ method }}</option>
+    </select>
+    
+    <input type="text" [(ngModel)]="amount" placeholder="Enter amount in ETH" class="w-full p-2 mb-4 border border-gray-300 rounded" />
+    <button (click)="initiateTransaction()" class="w-full py-2 bg-green-500 text-white font-bold rounded hover:bg-green-600">Confirm Transaction</button>
+  </div>
+</div>

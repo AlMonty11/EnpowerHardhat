@@ -1,0 +1,98 @@
+.loading {
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .wallet-info {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .wallet-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .wallet-address, .wallet-balance {
+    font-size: 1.1em;
+    margin: 0;
+  }
+  
+  .transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reduced gap between transactions */
+  }
+  
+  .tx-info {
+    padding: 5px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .tx-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tx-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-left: 10px; /* Space between From and Date */
+  }
+  
+  .tx-info.sent {
+    background-color: #ffe6e6;
+    border-color: #ff4d4d;
+  }
+  
+  .tx-info.received {
+    background-color: #e6ffe6;
+    border-color: #4dff4d;
+  }
+  
+  .status {
+    font-weight: bold;
+  }
+  
+  .status.sent {
+    color: #d9534f; /* Changed to a different red */
+  }
+  
+  .status.received {
+    color: #5cb85c; /* Changed to a different green */
+  }
+  
+  .contract-deploy {
+    color: #ff8c00; /* Different color for contract deploy */
+  }
+  
+  .no-wallet {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .no-wallet button {
+    margin: 5px;
+  }
+  
+  .wallet-input {
+    margin-top: 10px;
+  }
+  
+  .wallet-input input {
+    padding: 5px;
+    margin-right: 5px;
+  }
+  

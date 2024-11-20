@@ -1,0 +1,71 @@
+version: '3'
+services:
+  keycloak:
+    build: ./keycloak
+    container_name: keycloak
+    environment:
+     - DB_VENDOR=h2
+     - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+     - KC_BOOTSTRAP_ADMIN_PASSWORD=admincd 
+     - PROXY_ADDRESS_FORWARDING=true
+    ports:
+     - "8180:8080"
+    restart: always
+    volumes:
+     - ./keycloak/keycloak_data:/opt/jboss/keycloak/standalone/data
+
+  mongo:
+    build: ./db
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - ./db/mongo_data:/data/db
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"  # Interfaz web de MailHog
+    environment:
+      MH_STORAGE: "maildir"
+    restart: always
+    volumes:
+      - mailhog_data:/mailhog/data
+
+  ganache:
+    build: ./ganache
+    container_name: ganache
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./ganache/ganache_data:/app/ganache-data
+
+  # nest-api:
+  #   build: ./backend
+  #   container_name: nestjs-backend
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - mongo
+  #     - keycloak
+  #   environment:
+  #     - MONGO_URI=mongodb://root:password@mongodb:27017/identifiers
+  #     - KEYCLOAK_URL=http://keycloak:8080/auth
+  #     - KEYCLOAK_REALM=EnergyRealm
+  #     - KEYCLOAK_CLIENT_ID=energy-marketplace-client
+  #     - KEYCLOAK_SECRET=your_client_secret
+  #   volumes:
+  #     - ./backend:/usr/src/app
+
+volumes:
+  keycloak_data:
+  mongo_data:
+  mailhog_data:
+  ganache_data:

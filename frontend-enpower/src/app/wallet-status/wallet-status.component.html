@@ -1,0 +1,99 @@
+<!-- <div *ngIf="hasWallet === null" class="loading">Loading...</div>
+<div *ngIf="hasWallet === true" class="wallet-info">
+  <div class="wallet-details">
+    <p class="wallet-address"><strong>Wallet Address:</strong> {{ walletInfo?.walletAddress }}</p>
+    <p class="wallet-balance"><strong>Balance:</strong> {{ walletInfo?.balance }} ETH</p>
+  </div>
+  <h3>Transactions</h3>
+  <div class="transactions">
+    <div *ngFor="let tx of walletInfo?.transactions" class="tx-info" [ngClass]="{'sent': tx.from === walletInfo?.walletAddress, 'received': tx.to === walletInfo?.walletAddress}">
+      <div class="tx-header">
+        <p><strong>From:</strong> {{ tx.from }}</p>
+        <p class="tx-date">{{ tx.date }}</p>
+      </div>
+      <p><strong>To:</strong> {{ tx.to }}</p>
+      <p><strong>Amount:</strong> {{ convert(tx.value) }} ETH</p>
+      <p><strong>Hash:</strong> <a [href]="'https://sepolia.etherscan.io/tx/' + tx.hash" target="_blank">{{ tx.hash }}</a></p>
+      <p *ngIf="tx.from === walletInfo?.walletAddress" class="status sent">Sent <span *ngIf="!tx.to" class="contract-deploy">(Contract Deploy)</span></p>
+      <p *ngIf="tx.to === walletInfo?.walletAddress" class="status received">Received</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="hasWallet === false" class="no-wallet">
+  <p>You don't have an associated wallet. Please choose one of the following options:</p>
+  <button (click)="createWallet()">Create Wallet Automatically</button>
+  <button (click)="addWalletAddress()">Add Existing Wallet Address</button>
+  <button (click)="goToMetaMaskTutorial()">Go to MetaMask Tutorial</button>
+
+  <div *ngIf="showWalletInput" class="wallet-input">
+    <input [(ngModel)]="manualWalletAddress" placeholder="Enter your wallet address"/>
+    <button (click)="submitWalletAddress()">Save Address</button>
+  </div>
+</div> -->
+
+<!-- <div *ngIf="hasWallet === null" class="loading">Loading...</div>
+<div *ngIf="hasWallet === true" class="wallet-info">
+  <div class="wallet-details">
+    <p class="wallet-address"><strong>Wallet Address:</strong> {{ walletInfo?.walletAddress }}</p>
+    <p class="wallet-balance"><strong>Balance:</strong> {{ walletInfo?.balance }} ETH</p>
+  </div>
+  <h3>Transactions</h3>
+  <div class="transactions">
+    <div *ngFor="let tx of walletInfo?.transactions" class="tx-info" [ngClass]="{'sent': tx.from === walletInfo?.walletAddress, 'received': tx.to === walletInfo?.walletAddress}">
+      <div class="tx-header">
+        <p><strong>From:</strong> {{ tx.from }}</p>
+        <p class="tx-date">{{ tx.date }}</p>
+      </div>
+      <p><strong>To:</strong> {{ tx.to }}</p>
+      <p><strong>Amount:</strong> {{ convert(tx.value) }} ETH</p>
+      <p><strong>Hash:</strong> <a [href]="'https://sepolia.etherscan.io/tx/' + tx.hash" target="_blank">{{ tx.hash }}</a></p>
+      <p *ngIf="tx.from === walletInfo?.walletAddress" class="status sent">Sent <span *ngIf="!tx.to" class="contract-deploy">(Contract Deploy)</span></p>
+      <p *ngIf="tx.to === walletInfo?.walletAddress" class="status received">Received</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="hasWallet === false" class="no-wallet">
+  <p>You don't have an associated wallet. Please choose one of the following options:</p>
+  <button (click)="createWallet()">Create Wallet Automatically</button>
+  <button (click)="addWalletAddress()">Add Existing Wallet Address</button>
+  <button (click)="goToMetaMaskTutorial()">Go to MetaMask Tutorial</button>
+
+  <div *ngIf="showWalletInput" class="wallet-input">
+    <input [(ngModel)]="manualWalletAddress" placeholder="Enter your wallet address"/>
+    <button (click)="submitWalletAddress()">Save Address</button>
+  </div>
+</div>
+ -->
+ <div *ngIf="hasWallet === null" class="text-lg text-center mt-5 text-blue-600 font-medium">Loading...</div>
+ <div *ngIf="hasWallet === true" class="p-6 border border-gray-300 rounded-lg bg-white shadow-md">
+   <div class="flex justify-between items-center mb-6">
+     <p class="text-xl font-semibold text-gray-800"><strong>Wallet Address:</strong> {{ walletInfo?.walletAddress }}</p>
+     <p class="text-xl font-semibold text-gray-800"><strong>Balance:</strong> {{ walletInfo?.balance }} ETH</p>
+   </div>
+   <h3 class="text-2xl font-bold text-gray-900 mb-4">Transactions</h3>
+   <div class="flex flex-col gap-4">
+     <div *ngFor="let tx of walletInfo?.transactions" class="p-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm" [ngClass]="{'bg-red-100 border-red-400': tx.from === walletInfo?.walletAddress, 'bg-green-100 border-green-400': tx.to === walletInfo?.walletAddress}">
+       <div class="flex justify-between items-center mb-2">
+         <p class="text-lg text-gray-700"><strong>From:</strong> {{ tx.from }}</p>
+         <p class="text-sm text-gray-500">{{ tx.date }}</p>
+       </div>
+       <p class="text-lg text-gray-700"><strong>To:</strong> {{ tx.to }}</p>
+       <p class="text-lg text-gray-700"><strong>Amount:</strong> {{ convert(tx.value) }} ETH</p>
+       <p class="text-lg text-gray-700"><strong>Hash:</strong> <a [href]="'https://sepolia.etherscan.io/tx/' + tx.hash" target="_blank" class="text-blue-500 underline">{{ tx.hash }}</a></p>
+       <p *ngIf="tx.from === walletInfo?.walletAddress" class="font-bold text-red-600">Sent <span *ngIf="!tx.to" class="text-orange-600">(Contract Deploy)</span></p>
+       <p *ngIf="tx.to === walletInfo?.walletAddress" class="font-bold text-green-600">Received</p>
+     </div>
+   </div>
+ </div>
+ <div *ngIf="hasWallet === false" class="p-6 border border-gray-300 rounded-lg bg-white shadow-md text-center">
+   <p class="text-lg text-gray-700 mb-4">You don't have an associated wallet. Please choose one of the following options:</p>
+   <button (click)="createWallet()" class="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Create Wallet Automatically</button>
+   <button (click)="addWalletAddress()" class="m-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Add Existing Wallet Address</button>
+   <button (click)="goToMetaMaskTutorial()" class="m-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Go to MetaMask Tutorial</button>
+ 
+   <div *ngIf="showWalletInput" class="mt-4">
+     <input [(ngModel)]="manualWalletAddress" placeholder="Enter your wallet address" class="p-2 border border-gray-300 rounded mr-2"/>
+     <button (click)="submitWalletAddress()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save Address</button>
+   </div>
+ </div>
+ 
